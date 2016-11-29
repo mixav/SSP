@@ -588,7 +588,14 @@ function distinct(arr) {
  *   }
  */
 function group(array, keySelector, valueSelector) {
-   throw new Error('Not implemented');
+  return array.reduce((first, now)=> {
+       let key = keySelector(now);
+       let value = valueSelector(now);
+       let valueArr = first.get(key) || [];
+       valueArr.push(value);
+
+       return first.set(key, valueArr);
+   }, new Map);
 }
 
 

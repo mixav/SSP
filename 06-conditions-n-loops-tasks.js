@@ -421,8 +421,8 @@ function isBracketsBalanced(str) {
  *
  */
 function timespanToHumanString(startDate, endDate) {
-    //var a = endDate.getMilliseconds() - startDate.getMilliseconds();
-    var dif = (Date.parse(endDate) - Date.parse(startDate))/*+a*/;
+    var a = endDate.getMilliseconds() - startDate.getMilliseconds();
+    var dif = (Date.parse(endDate) - Date.parse(startDate))+a;
     if(dif<=45000){
       return 'a few seconds ago';
     }
@@ -446,10 +446,10 @@ function timespanToHumanString(startDate, endDate) {
     if(dif<=(45*24*3600*1000))
       return 'a month ago';
     if(dif<=(345*24*3600*1000))
-      return `${Math.round((dif-/)/(30*24*3600*1000))} months ago`;
+      return `${Math.round((dif-1)/(30*24*3600*1000))} months ago`;
     if(dif<=(545*24*3600*1000))
       return 'a year ago';
-    return `${Math.round((dif-1/)/(12*30*24*3600*1000))} years ago`;
+    return `${Math.round((dif-1)/(12*30*24*3600*1000))} years ago`;
 }
 
 
@@ -495,7 +495,7 @@ function getCommonDirectoryPath(pathes) {
       for(var j = 0; j < pathes[i].length; j++)
       if(path[j]!=pathes[i][j]) {
         path=path.slice(0,pathes[i].lastIndexOf('/',j)+1);
-        j=pathes[i].length;
+        break;
       }
     }
     return path;
